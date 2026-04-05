@@ -1,0 +1,136 @@
+import type { FormulaTemplate } from '@/types/formulas';
+
+export const FORMULA_TEMPLATES: FormulaTemplate[] = [
+  {
+    id: 'template-cylinder-volume',
+    name: 'Volumen de Cilindro',
+    expression: 'pi * r^2 * h',
+    variables: [
+      { name: 'r', label: 'Radio', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'h', label: 'Altura', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+    ],
+    description: 'Calcula el volumen de un cilindro: V = π × r² × h',
+    category: 'volume',
+  },
+  {
+    id: 'template-rectangular-channel',
+    name: 'Canal Rectangular',
+    expression: 'l * w * h',
+    variables: [
+      { name: 'l', label: 'Longitud', unit: 'm', defaultValue: 10, min: 0, max: 1000 },
+      { name: 'w', label: 'Ancho', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'h', label: 'Altura', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+    ],
+    description: 'Calcula el volumen de un canal rectangular: V = l × w × h',
+    category: 'volume',
+  },
+  {
+    id: 'template-trapezoidal-channel',
+    name: 'Canal Trapecial',
+    expression: '(b + B) / 2 * h * L',
+    variables: [
+      { name: 'b', label: 'Base menor', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'B', label: 'Base mayor', unit: 'm', defaultValue: 2, min: 0, max: 100 },
+      { name: 'h', label: 'Altura', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'L', label: 'Longitud', unit: 'm', defaultValue: 10, min: 0, max: 1000 },
+    ],
+    description: 'Calcula el volumen de un canal trapecial: V = ((b + B) / 2) × h × L',
+    category: 'volume',
+  },
+  {
+    id: 'template-sphere-volume',
+    name: 'Volumen de Esfera',
+    expression: '(4/3) * pi * r^3',
+    variables: [{ name: 'r', label: 'Radio', unit: 'm', defaultValue: 1, min: 0, max: 100 }],
+    description: 'Calcula el volumen de una esfera: V = (4/3) × π × r³',
+    category: 'volume',
+  },
+  {
+    id: 'template-cone-volume',
+    name: 'Volumen de Cono',
+    expression: '(1/3) * pi * r^2 * h',
+    variables: [
+      { name: 'r', label: 'Radio de la base', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'h', label: 'Altura', unit: 'm', defaultValue: 2, min: 0, max: 100 },
+    ],
+    description: 'Calcula el volumen de un cono: V = (1/3) × π × r² × h',
+    category: 'volume',
+  },
+  {
+    id: 'template-pipe-flow',
+    name: 'Caudal en Tubería',
+    expression: 'pi * (d/2)^2 * v',
+    variables: [
+      { name: 'd', label: 'Diámetro', unit: 'm', defaultValue: 0.5, min: 0, max: 10 },
+      { name: 'v', label: 'Velocidad', unit: 'm/s', defaultValue: 2, min: 0, max: 100 },
+    ],
+    description: 'Calcula el caudal en una tubería: Q = π × (d/2)² × v',
+    category: 'flow',
+  },
+  {
+    id: 'template-weir-flow',
+    name: 'Vertedero Rectangular',
+    expression: 'C * L * h^(3/2) * sqrt(2 * 9.81)',
+    variables: [
+      { name: 'C', label: 'Coeficiente', unit: '', defaultValue: 0.62, min: 0.1, max: 1 },
+      { name: 'L', label: 'Ancho', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+      { name: 'h', label: 'Carga', unit: 'm', defaultValue: 0.3, min: 0, max: 10 },
+    ],
+    description: 'Calcula el caudal en un vertedero rectangular',
+    category: 'flow',
+  },
+  {
+    id: 'template-pressure-depth',
+    name: 'Presión Hidrostática',
+    expression: '1000 * 9.81 * h',
+    variables: [
+      { name: 'h', label: 'Profundidad', unit: 'm', defaultValue: 10, min: 0, max: 1000 },
+    ],
+    description: 'Calcula la presión hidrostática: P = ρ × g × h (agua: ρ = 1000 kg/m³)',
+    category: 'pressure',
+  },
+  {
+    id: 'template-manning-velocity',
+    name: 'Velocidad Manning',
+    expression: '(1/n) * (A/P)^(2/3) * sqrt(S)',
+    variables: [
+      { name: 'n', label: 'Coeficiente n', unit: '', defaultValue: 0.013, min: 0.01, max: 0.1 },
+      { name: 'A', label: 'Área', unit: 'm²', defaultValue: 1, min: 0, max: 1000 },
+      { name: 'P', label: 'Perímetro', unit: 'm', defaultValue: 2, min: 0, max: 100 },
+      { name: 'S', label: 'Pendiente', unit: 'm/m', defaultValue: 0.001, min: 0, max: 1 },
+    ],
+    description: 'Calcula la velocidad con la fórmula de Manning: V = (1/n) × (A/P)^(2/3) × √S',
+    category: 'velocity',
+  },
+  {
+    id: 'template-circle-area',
+    name: 'Área de Círculo',
+    expression: 'pi * r^2',
+    variables: [{ name: 'r', label: 'Radio', unit: 'm', defaultValue: 1, min: 0, max: 1000 }],
+    description: 'Calcula el área de un círculo: A = π × r²',
+    category: 'area',
+  },
+  {
+    id: 'template-ellipse-area',
+    name: 'Área de Elipse',
+    expression: 'pi * a * b',
+    variables: [
+      { name: 'a', label: 'Semiaje mayor', unit: 'm', defaultValue: 2, min: 0, max: 100 },
+      { name: 'b', label: 'Semiaje menor', unit: 'm', defaultValue: 1, min: 0, max: 100 },
+    ],
+    description: 'Calcula el área de una elipse: A = π × a × b',
+    category: 'area',
+  },
+  {
+    id: 'template-orifice-flow',
+    name: 'Caudal por Orificio',
+    expression: 'Cd * A * sqrt(2 * 9.81 * h)',
+    variables: [
+      { name: 'Cd', label: 'Coeficiente', unit: '', defaultValue: 0.62, min: 0, max: 1 },
+      { name: 'A', label: 'Área', unit: 'm²', defaultValue: 0.01, min: 0, max: 10 },
+      { name: 'h', label: 'Carga', unit: 'm', defaultValue: 2, min: 0, max: 100 },
+    ],
+    description: 'Calcula el caudal a través de un orificio: Q = Cd × A × √(2gh)',
+    category: 'flow',
+  },
+];

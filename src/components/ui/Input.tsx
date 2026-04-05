@@ -8,8 +8,8 @@ export type InputVariant = 'default' | 'filled' | 'ghost';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: InputVariant;
   label?: string;
-  error?: string;
-  hint?: string;
+  error?: string | undefined;
+  hint?: string | undefined;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -34,34 +34,21 @@ const variantStyles: Record<InputVariant, string> = {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    {
-      className,
-      variant = 'default',
-      label,
-      error,
-      hint,
-      leftIcon,
-      rightIcon,
-      id,
-      ...props
-    },
+    { className, variant = 'default', label, error, hint, leftIcon, rightIcon, id, ...props },
     ref
   ) => {
     const inputId = id ?? label?.toLowerCase().replace(/\s/g, '-');
 
     return (
-      <div className='w-full'>
+      <div className="w-full">
         {label && (
-          <label
-            htmlFor={inputId}
-            className='block text-sm font-medium text-[#f5f5f5]/80 mb-2'
-          >
+          <label htmlFor={inputId} className="block text-sm font-medium text-[#f5f5f5]/80 mb-2">
             {label}
           </label>
         )}
-        <div className='relative'>
+        <div className="relative">
           {leftIcon && (
-            <span className='absolute left-3 top-1/2 -translate-y-1/2 text-[#f5f5f5]/50'>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#f5f5f5]/50">
               {leftIcon}
             </span>
           )}
@@ -83,17 +70,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {rightIcon && (
-            <span className='absolute right-3 top-1/2 -translate-y-1/2 text-[#f5f5f5]/50'>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#f5f5f5]/50">
               {rightIcon}
             </span>
           )}
         </div>
-        {error && (
-          <p className='mt-1.5 text-sm text-[#ff4444]'>{error}</p>
-        )}
-        {hint && !error && (
-          <p className='mt-1.5 text-sm text-[#f5f5f5]/50'>{hint}</p>
-        )}
+        {error && <p className="mt-1.5 text-sm text-[#ff4444]">{error}</p>}
+        {hint && !error && <p className="mt-1.5 text-sm text-[#f5f5f5]/50">{hint}</p>}
       </div>
     );
   }
